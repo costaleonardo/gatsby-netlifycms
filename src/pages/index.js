@@ -1,64 +1,45 @@
 import * as React from "react"
+import parse from 'html-react-parser'
 import { Link, graphql } from "gatsby"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
+import HeroSection from "../components/hero"
+import AboutSection from "../components/about"
+import ServicesSection from '../components/services';
+import PricingSection from "../components/pricing"
+import CtaSection from '../components/cta';
+import NewsSection from "../components/news"
+import ClientsSection from "../components/clients"
+import ContactSection from "../components/contact"
+import MapSection from "../components/map"
+
 const BlogIndex = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata?.title || `Title`
-  const posts = data.allMarkdownRemark.nodes
+  const siteTitle = data.site.siteMetadata?.title || `Title`;
+  const posts = data.allMarkdownRemark.nodes;
 
   if (posts.length === 0) {
     return (
       <Layout location={location} title={siteTitle}>
-        <Seo title="All posts" />
-        <Bio />
-        <p>
-          No blog posts found. Add markdown posts to "content/blog" (or the
-          directory you specified for the "gatsby-source-filesystem" plugin in
-          gatsby-config.js).
-        </p>
       </Layout>
     )
   }
 
   return (
     <Layout location={location} title={siteTitle}>
-      <Seo title="All posts" />
-      <Bio />
-      <ol style={{ listStyle: `none` }}>
-        {posts.map(post => {
-          const title = post.frontmatter.title || post.fields.slug
-
-          return (
-            <li key={post.fields.slug}>
-              <article
-                className="post-list-item"
-                itemScope
-                itemType="http://schema.org/Article"
-              >
-                <header>
-                  <h2>
-                    <Link to={post.fields.slug} itemProp="url">
-                      <span itemProp="headline">{title}</span>
-                    </Link>
-                  </h2>
-                  <small>{post.frontmatter.date}</small>
-                </header>
-                <section>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: post.frontmatter.description || post.excerpt,
-                    }}
-                    itemProp="description"
-                  />
-                </section>
-              </article>
-            </li>
-          )
-        })}
-      </ol>
+      <Seo title="Home" />
+      <HeroSection />
+      <AboutSection />
+      <ServicesSection />
+      <PricingSection />
+      <CtaSection />
+      <NewsSection />
+      <ClientsSection />
+      <ContactSection />
+      <MapSection />
+  
     </Layout>
   )
 }

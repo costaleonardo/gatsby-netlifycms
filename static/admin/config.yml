@@ -1,5 +1,6 @@
 backend:
   name: git-gateway
+  repo: costaleonardo/gatsby-netlifycms
   branch: main # Branch to update (optional; defaults to master)
 
 media_folder: static/img
@@ -15,9 +16,85 @@ collections:
     public_folder: ''
     path: '{{title}}/index'
     editor:
-      preview: false
+      preview: true
     fields:
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
       - { label: 'Description', name: 'description', widget: 'string' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
+  - name: 'team'
+    label: 'Team'
+    folder: 'content/team'
+    create: true
+    slug: 'index'
+    media_folder: ''
+    public_folder: ''
+    path: '{{title}}/index'
+    editor:
+      preview: true
+    fields:
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Publish Date', name: 'date', widget: 'datetime' }
+      - { label: 'Description', name: 'description', widget: 'string' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
+  - name: 'settings'
+    label: 'Setting'
+    files: 
+      - label: 'Contact Info'
+        name: 'contact_info'
+        file: 'site/settings/contact_info.json'
+        fields: 
+          - { label: 'Phone', name: 'phone', widget: 'string' }
+          - { label: 'Email', name: 'email', widget: 'string' }
+          - label: 'Address'
+            name: 'address'
+            widget: 'object'
+            fields: 
+              - { label: 'Street', name: 'street', widget: 'string' }
+  - name: 'pages'
+    label: 'Pages'
+    files: 
+      - label: 'Test'
+        name: 'test'
+        file: 'site/test-page/test-page.json'
+        fields: 
+          - { label: "Draft", name: "draft", widget: "boolean", default: true }
+          - label: 'Code'
+            name: 'code'
+            widget: 'code'
+          - { label: 'Color', name: 'color', widget: 'color', enableAlpha: true, allowInput: true }
+          - label: "Start time"
+            name: "start"
+            widget: "datetime"
+            default: ""
+            date_format: "DD.MM.YYYY" # e.g. 24.12.2021
+            time_format: "HH:mm" # e.g. 21:07
+            format: "LLL"
+            picker_utc: false      
+          - label: "Manual PDF"
+            name: "manual_pdf"
+            widget: "file"
+            default: "/uploads/general-manual.pdf"
+            media_library:
+              config:
+                multiple: true    
+          - { label: "Layout", name: "layout", widget: "hidden", default: "blog" }      
+          - label: "Featured Image"
+            name: "thumbnail"
+            widget: "image"
+            choose_url: true
+            default: "/uploads/chocolate-dogecoin.jpg"
+            media_library:
+              config:
+                multiple: true   
+          - label: "Text List"
+            name: "textList"
+            widget: "list"
+            summary: '{{fields.title}}'
+            field: { label: "Title", name: "title", widget: "string" }
+          - { label: "Location", name: "location", widget: "map" }
+          # - label: 'Address'
+          #   name: 'address'
+          #   widget: 'object'
+          #   fields: 
+          #     - { label: 'Street', name: 'street', widget: 'string' }              
