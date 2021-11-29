@@ -6,5 +6,10 @@
   "color": "#681818",
   "start": "November 28, 2021 9:35 PM",
   "manual_pdf": "/img/leonardo-s-resume.pdf",
-  "thumbnail": "/img/woocommerce-placeholder.jpeg"
+  "thumbnail": "/img/woocommerce-placeholder.jpeg",
+  "textList": [
+    "Text 1",
+    "Text 2",
+    "Text 3"
+  ]
 }
